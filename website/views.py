@@ -33,3 +33,8 @@ def delete_note():
             db.session.commit()
 
     return jsonify({})
+
+@login_required
+@views.route('/calendar', methods=['GET'])
+def calendar():
+    return render_template("calendar.html", user=current_user)

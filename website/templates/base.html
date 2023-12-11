@@ -10,14 +10,16 @@
   <meta name="keywords" content="bootstrap, bootstrap4" />
 
 		<!-- Bootstrap CSS -->
+		{% block styles %} {% endblock %}
+
 		<link href="../static/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 		<link href="../static/css/tiny-slider.css" rel="stylesheet">
 		<link href="../static/css/style.css" rel="stylesheet">
-        {% block styles %} {% endblock %}
 
-
-		<title>Teach&Study</title>
+		
+		
+		<title>{% block title %}Teach&Study{% endblock %}</title>
 	</head>
 
 	<body>
@@ -26,7 +28,7 @@
 		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
 			<div class="container">
-				<a class="navbar-brand" href="index.html">Teach&Study<span>.</span></a>
+				<a class="navbar-brand" href="/">Teach&Study<span>.</span></a>
 
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -43,8 +45,28 @@
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" id="login" href="/login"><img src="../static/images/user.svg"></a></li>
-						<li><a class="nav-link" href="cart.html"><img src="../static/images/calendar.svg"></a></li>
+						{% if user.is_authenticated %}
+						<li class="dropdown">
+							<a
+							class="nav-link dropdown-toggle hidden-arrow"
+							type="button"
+							id="dropdownMenuicon"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+						  >
+								<img src="../static/images/user.svg">
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuicon">
+								<li><a class="dropdown-item" href="#"> <i class="fas fa-user-alt pe-2"></i>Профіль</a></li>
+								<li><a class="dropdown-item" href="#"> <i class="fas fa-cog pe-2"></i>Налаштування</a></li>
+								<li><a class="dropdown-item" href="#"> <i class="fas fa-door-open pe-2"></i>Вийти</a></li>
+							  </ul>
+						</li>
+						{% else %}
+							<li><a class="nav-link" href="/login"><img src="../static/images/user.svg"></a></li>
+						{% endif %}
+						<li><a class="nav-link" href="/calendar"><img src="../static/images/calendar.svg"></a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -65,14 +87,15 @@
             {{message}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        
         {% endif %} {% endfor %} {% endif %} {% endwith %}
 
     {% block content %} {% endblock %}
+
+	{% block scripts %} {% endblock %}
+
     <script src="../static/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/tiny-slider.js"></script>
     <script src="../static/js/custom.js"></script>
-    {% block scripts %} {% endblock %}
 </body>
 
 </html>
