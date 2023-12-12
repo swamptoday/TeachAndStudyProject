@@ -34,7 +34,12 @@ def delete_note():
 
     return jsonify({})
 
-@login_required
 @views.route('/calendar', methods=['GET'])
+@login_required
 def calendar():
     return render_template("calendar.html", user=current_user)
+
+@views.route('/profile', methods=['GET'])
+@login_required
+def profile():
+    return render_template("profile.html", user=current_user)

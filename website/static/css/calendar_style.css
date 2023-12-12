@@ -13,7 +13,7 @@
   }
   
   #calendar {
-    width: 90%;
+    width: 75%;
     margin: 40px auto;
     height: 100%;
     border-radius: 1%;
@@ -76,7 +76,7 @@
     margin: 0;
     font-size: 30px;
     display: inline-block;
-    color:white
+    color:#3b5d50;
     }
 
     .calendar-sidebar>.month-list>.calendar-months {
@@ -85,4 +85,22 @@
       padding: 0;
       align-items: center;
       justify-content: center;
-      }
+    }
+
+    .calendar-inner {
+      position: relative;
+      padding: 40px 30px;
+      float: left;
+      width: 100%;
+      max-width: calc(100% - 600px);
+      margin-left: 200px;
+      background-color: #fff;
+      -webkit-box-shadow: 5px 0 18px -3px rgba(0,0,0,.15);
+      box-shadow: 5px 0 18px -3px rgba(0,0,0,.15);
+      -webkit-transition: all .3s ease;
+      -o-transition: all .3s ease;
+      transition: all .3s ease;
+      z-index: 1;
+      height: 100%;
+    }
+
