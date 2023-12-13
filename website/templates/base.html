@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="Untree.co">
+  <meta name="viewport">
+  <meta name="author" content="">
   <link rel="shortcut icon" href="favicon.png">
 
   <meta name="description" content="" />
@@ -42,17 +42,17 @@
 						{% if user.is_authenticated %}
 							{% if user.is_student %}
 								<li><a class="nav-link" href="/tutors">Знайти репетитора</a></li>
-								<li><a class="nav-link" href="about.html">Журнал оцінок</a></li>
-								<li><a class="nav-link" href="about.html">Про нас</a></li>
+								<li><a class="nav-link" href="/">Журнал оцінок</a></li>
+								<li><a class="nav-link" href="/">Про нас</a></li>
 							{% else %}
-								<li><a class="nav-link" href="shop.html">Мої учні</a></li>
+								<li><a class="nav-link" href="/">Мої учні</a></li>
 								<li><a class="nav-link" href="/curriculum">Мої плани</a></li>
-								<li><a class="nav-link" href="about.html">Про нас</a></li>
+								<li><a class="nav-link" href="/">Про нас</a></li>
 							{% endif %}
 						{% else %}
 							<li><a class="nav-link" href="/tutors">Знайти репетитора</a></li>
 							<li><a class="nav-link" href="services.html">Стати репетитором</a></li>
-							<li><a class="nav-link" href="about.html">Про нас</a></li>
+							<li><a class="nav-link" href="/">Про нас</a></li>
 						{% endif %}
 					</ul>
 
@@ -60,12 +60,12 @@
 						{% if user.is_authenticated %}
 						<li class="dropdown">
 							<a
-							class="nav-link dropdown-toggle hidden-arrow"
-							type="button"
-							id="dropdownMenuicon"
-							data-bs-toggle="dropdown"
-							aria-expanded="false"
-						  >
+								class="nav-link dropdown-toggle hidden-arrow"
+								type="button"
+								id="dropdownMenuicon"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+						  	>
 								<img src="../static/images/user.svg">
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuicon">
@@ -103,7 +103,6 @@
 
 	{% block styles2 %} {% endblock %}
     {% block content %} {% endblock %}
-
 	{% block scripts %} {% endblock %}
 
     <script src="../static/js/bootstrap.bundle.min.js"></script>

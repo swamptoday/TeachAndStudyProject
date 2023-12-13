@@ -77,6 +77,24 @@
                         <input class="form-control form-control-sm" type="text" id="address" name="address" style="width: 100%;" value="{% if user.address != None %}{{user.address}}{% endif %}">
                       </div>
                     </div>
+                    {% if user.is_tutor %}
+                      <div class="row form-outline mb-4">
+                        <div class="col-3">
+                          <label for="description">Опис себе</label>
+                        </div>
+                        <div class="col-9">
+                          <textarea class="form-control form-control-sm" type="text" id="description" name="description" style="width: 100%;">{{tutor.description}}</textarea>
+                        </div>
+                      </div>
+                      <div class="row form-outline mb-4">
+                        <div class="col-3">
+                          <label for="subjects">Предмети, які ви викладаєте</label>
+                        </div>
+                        <div class="col-9">
+                          <input class="form-control form-control-sm" type="text" id="subjects" name="subjects" value="{{tutor.subjects}}" placeholder="Через крапку з комою, наприклад 'Англійська; Математика'" style="width: 100%;">
+                        </div>
+                      </div>
+                    {% endif %}
                     <!-- Other fields for last name, email, phone, address go here -->
                     <!-- ... -->
               
@@ -95,23 +113,23 @@
                 <ul class="list-group list-group-flush rounded-3 d-flex flex-column" style="height: 100%;"> <!-- Apply flex-column class -->
                   <li class="list-group-item d-flex justify-content-between align-items-center p-3 flex-grow-1">
                     <i class="fas fa-globe fa-lg text-warning"></i>
-                    <p class="mb-0">https://solomiyash.com</p>
+                    <p class="mb-0">https://{{user.email.split('@')[0]}}.com</p>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center p-3 flex-grow-1">
                     <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                    <p class="mb-0">solomiyash</p>
+                    <p class="mb-0">{{user.email.split('@')[0]}}</p>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center p-3 flex-grow-1">
                     <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                    <p class="mb-0">@solomiyash</p>
+                    <p class="mb-0">@{{user.email.split('@')[0]}}</p>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center p-3 flex-grow-1">
                     <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                    <p class="mb-0">solomiyash</p>
+                    <p class="mb-0">{{user.email.split('@')[0]}}</p>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center p-3 flex-grow-1">
                     <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                    <p class="mb-0">solomiyash</p>
+                    <p class="mb-0">{{user.email.split('@')[0]}}</p>
                   </li>
                 </ul>
               </div>
