@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block title %}Плани{% endblock %}
+
+{% block styles2 %}
+    <link href="../static/css/curriculum_card.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="section_our_solution">
+    <div class="row mb-3">
+        
+        <a class="btn btn-m btn-secondary" href="/curriculum/add">Додати план</a>
+    
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="our_solution_category">
+          <div class="solution_cards_box">
+            {% for curriculum in curriculums %}
+            <div class="solution_card">
+                <div class="hover_color_bubble"></div>
+                <div class="so_top_icon">
+                    <img src="../static/images/plan.svg">
+                </div>
+                <div class="solu_content">
+                    <div class="solu_title">
+                        <div class="row">
+                            <div class="col">
+                                <h3>{{ curriculum.name }}</h3> <!-- Use the actual attribute name holding the title -->
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa-solid fa-hourglass"></i>
+                                    </div>
+                                    <div class="col">
+                                        <h3>{{ curriculum.amount }} годин</h3> <!-- Use the actual attribute name holding the title -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa-solid fa-question"></i>                                    </div>
+                                    <div class="col">
+                                        <h3>Складність: {{ curriculum.level }}/10 </h3> <!-- Use the actual attribute name holding the title -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="solu_description">
+                        <p>{{ curriculum.description }}</p> <!-- Use the actual attribute name holding the description -->
+                        <button type="button" class="read_more_btn">Більше про план</button>
+                    </div>
+                </div>
+            </div>
+            
+        {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  {% endblock %}

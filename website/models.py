@@ -33,6 +33,8 @@ class Student(db.Model):
 class Tutor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True)
+    description = db.Column(db.String)
+    subjects = db.Column(db.String)
     user = db.relationship('User', back_populates='tutor')
     curriculums = db.relationship('Curriculum')
     calendars = db.relationship('Calendar')
@@ -52,3 +54,6 @@ class Calendar(db.Model):
     date = db.Column(db.DateTime(timezone=True))
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutor.id'))
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
+
+#add description to tutor
+#add subject to tutor

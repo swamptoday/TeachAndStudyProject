@@ -9,9 +9,16 @@
                 <div class="intro-excerpt">
                     <h1> Освітня платформа, <span clsas="d-block">що об'єднує людей</span></h1>
                     <p class="mb-4">Ми надаємо вам комунікацію, розклад, регулювання оплати та засоби відстеження прогресу, щоб забезпечити ефективне навчання онлайн. Від вас потрібно лише бажання!</p>
-                    <p><a href="" class="btn btn-secondary me-2 mb-2">Пошук репетитора</a><a href="#" class="btn btn-white-outline">Детальніше</a></p>
                     {% if user.is_authenticated %}
+                        {% if user.is_student %}
+                            <p><a href="/tutors" class="btn btn-secondary me-2 mb-2">Знайти репетитора</a><a href="#" class="btn btn-white-outline">Детальніше</a></p>
+                        {% else %}
+                            <p><a href="" class="btn btn-secondary me-2 mb-2">Мої учні</a><a href="#" class="btn btn-white-outline">Детальніше</a></p>
+                        {% endif %}
+                    {% else %}
+                        <p><a href="/tutors" class="btn btn-secondary me-2 mb-2">Знайти репетитора</a><a href="#" class="btn btn-white-outline">Детальніше</a></p>
                     {% endif %}
+
                 </div>
             </div>
             <div class="col-lg-7 mt-5">

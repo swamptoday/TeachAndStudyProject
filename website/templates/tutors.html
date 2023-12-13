@@ -1,0 +1,118 @@
+{% extends "base.html" %} {% block title %}Репетитори{% endblock %}
+
+{% block styles2 %}
+    <link href="../static/css/curriculum_card.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="section_our_solution">
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="our_solution_category">
+          <div class="solution_cards_box">
+            {% for tutor in tutors %}
+            <div class="solution_card">
+                <div class="hover_color_bubble"></div>
+                <div class="mx-4">
+                    <i class="fa-regular fa-user fa-xl"></i>                
+                </div>
+                <div class="solu_content">
+                    <div class="solu_title">
+                        <div class="row mx-2">
+                            <div class="col">
+                                <h3>{{tutor.first_name}} {{tutor.last_name}}</h3> <!-- Use the actual attribute name holding the title -->
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="solu_description">
+                        <div class="row mx-2">
+                            <div class="col-6">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.</p>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa-regular fa-envelope"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p>{{tutor.email}}</p> <!-- Use the actual attribute name holding the description -->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p>{% if tutor.phone == None %}Інформація ще не заповнена :({% else %}{{tutor.phone}}{% endif %}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button type="button" class="read_more_btn" id={{tutor.email}}>Більше про репетитора</button>                    
+                    </div>
+                </div>
+            </div>
+            
+        {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- Modal HTML -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <p id="modalContent"></p>
+        <form id="event-schedule">
+            <div class="modal-buttons">
+                <label for="date">Дата й час</label>
+                <input type="datetime-local" name="date" id="date" placeholder="YYYY-MM-DDThh:mm">
+                <label for="tutor"></label>
+                <input type="hidden" name="tutor" id="tutor">
+                <button class="btn btn-m btn-secondary" type="submit" id="btn">Замовити</button>
+            </div>
+        </form>
+    </div>
+  </div>
+  
+  
+  {% endblock %}
+
+  {% block scripts %}
+  <script>
+    const modal = document.getElementById('myModal');
+    const tutorModalBtns = document.querySelectorAll('.read_more_btn');
+  
+    function openModal(event) {
+      const tutorEmail = event.currentTarget.getAttribute('id');
+      const tutorDescription = event.currentTarget.closest('.solution_card').querySelector('.solu_description').innerHTML;
+  
+      // Update modal content using the tutor's email or any other information
+      document.getElementById('modalContent').innerHTML = `Запланувати зустріч з цим репетитором?`;
+      
+      // Update the hidden input value to the tutor's email
+      document.getElementById('tutor').value = tutorEmail;
+  
+      modal.style.display = 'block';
+    }
+  
+    tutorModalBtns.forEach(button => {
+      button.addEventListener('click', openModal);
+    });
+  
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+  
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+  </script>
+  
+  
+  {% endblock %}
